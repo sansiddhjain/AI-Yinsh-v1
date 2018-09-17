@@ -49,7 +49,13 @@ double Agent::score_function(vector<pair<pair<int, int>, pair<int, int> > > vec)
 double Agent::calculate_score(Board board) {
     vector<pair<pair<int, int>, pair<int, int> > > player_markers = board.get_marker_rows(1, board.player_color);
     vector<pair<pair<int, int>, pair<int, int> > > opp_markers = board.get_marker_rows(1, board.other_color);
-    return score_function(player_markers) - score_function(opp_markers);
+    double score = score_function(player_markers) - score_function(opp_markers);
+    vector<pair<pair<int, int>, pair<int, int> > > five_or_more = state.get_marker_rows(5, state.player_color);
+    if (!five_or_more.empty())
+      score += 100000;
+    five_or_more = state.get_marker_rows(5, state.other_color);
+    if (!five_or_more.empty())
+      score += -100000;
 }
 
 // Recursively construct tree normally
@@ -152,9 +158,9 @@ string Agent::get_next_move() {
     state_tree = Board(state);
     Node *tree = new Node;
 //    cerr << "22@" << endl;
-    if (state.num_moves_played < 16)
+    if (state.num_moves_played < 5)
         recursive_construct_tree(state_tree, tree, 0, 1);
-    else if (state.num_moves_played < 22)
+    else if (state.num_moves_played < 8)
         recursive_construct_tree(state_tree, tree, 0, 2);
     else
         recursive_construct_tree(state_tree, tree, 0, 3);
@@ -298,13 +304,13 @@ double Agent::minimax(Node *node) {
       return v
  */
 
-double Agent::minimax_ab(Board board, Node *node, int depth, double min, double max) {
-    if (depth == 0)
-        return calculate_score(board);
-    else {
-
-    }
-}
+//double Agent::minimax_ab(Board board, Node *node, int depth, double min, double max) {
+//    if (depth == 0)
+//        return calculate_score(board);
+//    else {
+//
+//    }
+//}
 
 
 bool Agent::check_won() {

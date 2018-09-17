@@ -1,0 +1,4 @@
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/cmake-build-debug/CMakeFiles/test.dir
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/cmake-build-debug/CMakeFiles/yinsh_ai.dir
