@@ -14,16 +14,16 @@ public:
   double score;
   Node** children;
   bool isLeaf;
-  int alpha;
-  int beta;
+  double alpha;
+  double beta;
   char type; //M - max, m - min
   int gotoidx; //The index of child to go to
-  Node() : score(0), isLeaf(false), alpha(-INFINITY), beta(INFINITY), type('u'), gotoidx(-1) {}
+  Node() : score(0), gotoidx(0), isLeaf(false), alpha(-INFINITY), beta(INFINITY), type('u') {}
 };
 
 class Agent {
 private:
-    int playerID; // 0 - self, 1 - other
+    int playerID; // 1 - self, 2 - other
     double time_left;
     int n;
 public:
@@ -37,7 +37,7 @@ public:
     double calculate_score(Board board);
     void recursive_construct_tree(Board board, Node* node, int depth, int maxDepth);
     string get_next_move();
-    int minimax(Node* node);
+    double minimax(Node* node);
     bool check_won();
     string initial_move();
 };

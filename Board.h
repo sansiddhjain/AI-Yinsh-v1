@@ -75,9 +75,12 @@ public:
     int num_markers;
     int num_opp_markers;
     int num_moves_played;
-    Piece** rings; // (!MIGHT HAVE TO DEPRECATE THIS!) array containing pointers to rings on board. IMPORTANT: check for null before accessing, after deleting a ring this maybe dangling pointer
+//    Piece** rings; // (!MIGHT HAVE TO DEPRECATE THIS!) array containing pointers to rings on board. IMPORTANT: check for null before accessing, after deleting a ring this maybe dangling pointer
+//    Piece** opp_rings;
 
     Board(int n, int m, int k, int l, char player_col, char other_col);
+//    Board(const Board& b);
+
     int return_n(){ return n; }
     int return_m(){ return m; }
     int return_k(){ return k; }
