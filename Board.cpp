@@ -20,7 +20,11 @@ bool Board::is_position_valid(pair<int,int> position) {
 }
 
 // Constructs Board
-Board::Board(int n, int m, int k, int l, char player_col, char other_col) : n(n), l(l), m(m), k(k), player_color(player_col), other_color(other_col), num_rings_on_board(0) {
+Board::Board(int n, int m, int k, int l, char player_col, char other_col) : n(n), l(l), m(m), k(k), player_color(player_col), other_color(other_col) {
+    num_rings_on_board = 0;
+    num_opp_rings_on_board = 0;
+    num_markers = 0;
+    num_opp_markers = 0;
     // Initialises rings arr to nulls
     rings = new Piece*[m];
     for(int i = 0; i < m; i++){
@@ -79,7 +83,7 @@ bool Board::place_piece(char type, char color, pair<int,int> position) {
           else
             num_opp_markers++;
         }
-        cerr << "Piece at (0,0) is " << game_board.at(position.first).at(position.second).piece->type << game_board.at(position.first).at(position.second).piece->color << "\n";
+        //cerr << "Piece at (0,0) is " << game_board.at(position.first).at(position.second).piece->type << game_board.at(position.first).at(position.second).piece->color << "\n";
         return true;
 //    }
     return false;
@@ -393,7 +397,7 @@ void Board::execute_move(string move, int playerID)
 	if (splitString.size() == 3) { // Place a ring
         pair<int, int> pos_hex = make_pair( stoi( splitString.at(1)), stoi(splitString.at(2)) ); //position in hex coordinates
         pair<int, int> pos_xy = hex_to_xy(pos_hex);
-        std::cerr << pos_xy.first << ", " << pos_xy.second << '\n';
+//        std::cerr << pos_xy.first << ", " << pos_xy.second << '\n';
         place_piece('r', playerID == 1 ? player_color : other_color, pos_xy);
 	}
     else if (splitString.size() == 6) { // Move a ring
@@ -401,8 +405,8 @@ void Board::execute_move(string move, int playerID)
         pair<int, int> end_hex = make_pair( stoi(splitString.at(4)), stoi(splitString.at(5)) ); //end postion in hex coordinates
         pair<int, int> start_xy = hex_to_xy(start_hex);
         pair<int, int> end_xy = hex_to_xy(end_hex);
-        std::cerr << start_xy.first << ", " << start_xy.second << '\n';
-        std::cerr << end_xy.first << ", " << end_xy.second << '\n';
+//        std::cerr << start_xy.first << ", " << start_xy.second << '\n';
+//        std::cerr << end_xy.first << ", " << end_xy.second << '\n';
         move_ring(start_xy, end_xy);
     }
 	else { // Move Ring, Remove Row, Remove Ring
@@ -411,21 +415,21 @@ void Board::execute_move(string move, int playerID)
         pair<int, int> end_hex = make_pair( stoi(splitString.at(4)), stoi(splitString.at(5)) ); //end postion in hex coordinates
         pair<int, int> start_xy = hex_to_xy(start_hex);
         pair<int, int> end_xy = hex_to_xy(end_hex);
-        std::cerr << start_xy.first << ", " << start_xy.second << '\n';
-        std::cerr << end_xy.first << ", " << end_xy.second << '\n';
+//        std::cerr << start_xy.first << ", " << start_xy.second << '\n';
+//        std::cerr << end_xy.first << ", " << end_xy.second << '\n';
         move_ring(start_xy, end_xy);
 			// Delete row
         pair<int, int> row_start_hex = make_pair( stoi( splitString.at(7)), stoi(splitString.at(8)) ); //row starting position in hex coordinates
         pair<int, int> row_end_hex = make_pair( stoi(splitString.at(10)), stoi(splitString.at(11)) ); //row ending postion in hex coordinates
         pair<int, int> row_start_xy = hex_to_xy(row_start_hex);
         pair<int, int> row_end_xy = hex_to_xy(row_end_hex);
-        std::cerr << row_start_xy.first << ", " << row_start_xy.second << '\n';
-        std::cerr << row_end_xy.first << ", " << row_end_xy.second << '\n';
+//        std::cerr << row_start_xy.first << ", " << row_start_xy.second << '\n';
+//        std::cerr << row_end_xy.first << ", " << row_end_xy.second << '\n';
         delete_row(row_start_xy, row_end_xy);
         // Remove Ring
         pair<int, int> ring_hex = make_pair( stoi( splitString.at(13)), stoi(splitString.at(14)) ); //position in hex coordinates
         pair<int, int> ring_xy = hex_to_xy(ring_hex);
-        std::cerr << ring_xy.first << ", " << ring_xy.second << '\n';
+//        std::cerr << ring_xy.first << ", " << ring_xy.second << '\n';
         remove_piece(ring_xy);
     }
 }

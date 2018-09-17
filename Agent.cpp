@@ -6,6 +6,7 @@
 #include <cmath>
 #include <algorithm>
 #include "Agent.h"
+#include <iostream>
 
 using namespace std;
 
@@ -26,7 +27,7 @@ void Agent::copy_board()
 }
 
 // Simple scoring function based on Slovenian guy recommendation #2
-int Agent::score_function(vector< pair< pair<int,int>, pair<int,int> > > vec)
+double Agent::score_function(vector< pair< pair<int,int>, pair<int,int> > > vec)
 {
   vector< pair< pair<int,int>, pair<int,int> > >::iterator ptr;
 
@@ -48,7 +49,7 @@ int Agent::score_function(vector< pair< pair<int,int>, pair<int,int> > > vec)
 }
 
 // Calculate score of player, subtract score of opponent
-int Agent::calculate_score(Board board)
+double Agent::calculate_score(Board board)
 {
   vector< pair< pair<int,int>, pair<int,int> > > player_markers = board.get_marker_rows(1, board.player_color);
   vector< pair< pair<int,int>, pair<int,int> > > opp_markers = board.get_marker_rows(1, board.other_color);
@@ -60,12 +61,14 @@ void Agent::recursive_construct_tree(Board board, Node* node, int depth, int max
 {
   // node->score = calculate_score(board);
   // if (depth == 0) { node->move = nullptr;}
+  cerr << "Entered fn" << endl;
   if (depth < maxDepth) //Can tune this 4 parameter
   {
     node->isLeaf = false;
     vector< pair< pair<int,int>, pair<int,int> > > succ_all;
     if (depth % 2 == 0) //Self player is playing
     {
+        cerr << "self" << endl;
       node->type = 'M';
       for (int i = 0; i < state.num_rings_on_board; i++)
       {
@@ -75,6 +78,7 @@ void Agent::recursive_construct_tree(Board board, Node* node, int depth, int max
     }
     else //Opponent is playing
     {
+        cerr << "opp" << endl;
       node->type = 'm';
       for (int i = 0; i < state.num_opp_rings_on_board; i++)
       {
@@ -82,6 +86,7 @@ void Agent::recursive_construct_tree(Board board, Node* node, int depth, int max
           succ_all.insert(succ_all.end(), succ_ring.begin(), succ_ring.end());
       }
     }
+    cerr << "Reached here, depth = " << depth << endl;
     node->children = new Node*[succ_all.size()];
     vector< pair< pair<int,int>, pair<int,int> > >::iterator ptr;
     int idx = 0;
@@ -107,17 +112,43 @@ void Agent::recursive_construct_tree(Board board, Node* node, int depth, int max
 // Recursively construct tree with history heuristic
 // Node* Agent::recursive_construct_tree_hh(Board board, int depth){}
 
+string Agent::initial_move() {
+    //todo: change strategy, also executes_move
+    // for now just place near centre, first move on centremost hexagons going clockwise
+    string move;
+    if (!state.game_board.at(0).at(0).is_piece()) {
+        state.place_piece('r', state.player_color, pair<int,int> (0,0));
+        return "P 0 0 ";
+    }
+    for(int j = 0; j < n; j++){
+        pair<int,int> pos_xy = state.hex_to_xy(pair<int,int>(1, j));
+        if (!state.game_board.at(pos_xy.first).at(pos_xy.second).is_piece()) {
+            state.place_piece('r', state.player_color, pair<int,int> (pos_xy.first, pos_xy.second));
+            return "P 1 " + to_string(j);
+        }
+    }
+    for(int j = 0; j < 2*n; j++){
+        pair<int,int> pos_xy = state.hex_to_xy(pair<int,int>(2, j));
+        if (!state.game_board.at(pos_xy.first).at(pos_xy.second).is_piece()) {
+            state.place_piece('r', state.player_color, pair<int,int> (pos_xy.first, pos_xy.second));
+            return "P 2 " + to_string(j);
+        }
+    }
+}
+
 
 string Agent::get_next_move() {
     // IMPORTANT - Also executes next move
-    if ((state->num_rings_on_board < state.return_m()) & (state->num_markers == 0))
+    if ((state.num_rings_on_board < state.return_m()) & (state.num_markers == 0))
     {
       // Perform placement of ring
-      return "P _ _";
+      return initial_move();
     }
     copy_board();
-    Node* tree;
+    Node* tree = new Node;
+    cerr << "22@" << endl;
     recursive_construct_tree(state_tree, tree, 0, 4);
+    cerr << "111" <<endl;
     int trash = minimax(tree);
     pair< pair<int, int>, pair<int, int> > move = tree->children[tree->gotoidx]->move;
     bool b = state.move_ring(move.first, move.second);
@@ -125,7 +156,7 @@ string Agent::get_next_move() {
     vector< pair< pair<int,int>, pair<int,int> > > five_or_more = state.get_marker_rows(5, state.player_color);
     move.first = state.xy_to_hex(move.first);
     move.second = state.xy_to_hex(move.second);
-    if (five_or_more.size() == 0)
+    if (five_or_more.empty())
     {
       string output = "S";
       output += " " + to_string(move.first.first);
