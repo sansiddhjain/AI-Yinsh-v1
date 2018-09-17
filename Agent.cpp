@@ -181,6 +181,7 @@ string Agent::get_next_move() {
       output += " M";
       output += " " + to_string(move.second.first);
       output += " " + to_string(move.second.second);
+      state.num_moves_played++;
       return output;
     }
     else
@@ -243,9 +244,9 @@ string Agent::get_next_move() {
       bool b = state.remove_piece(ring);
       output += " " + to_string(ring.first);
       output += " " + to_string(ring.second);
+      state.num_moves_played++;
       return output;
     }
-    state.num_moves_played++;
 }
 
 // Vanilla minimax
