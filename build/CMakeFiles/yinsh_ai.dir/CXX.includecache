@@ -1,0 +1,54 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Agent.cpp
+string
+-
+cmath
+-
+algorithm
+-
+Agent.h
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Agent.h
+
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Agent.h
+Board.h
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Board.h
+
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Board.cpp
+Board.h
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Board.h
+sstream
+-
+vector
+-
+iostream
+-
+
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Board.h
+utility
+-
+vector
+-
+map
+-
+
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/main.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+utility
+-
+Board.h
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Board.h
+Agent.h
+/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Agent.h
+
