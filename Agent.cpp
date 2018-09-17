@@ -66,6 +66,7 @@ void Agent::recursive_construct_tree(Board board, Node *node, int depth, int max
 //        cerr << "self" << endl;
             node->type = 'M';
             for (int i = 0; i < state.num_rings_on_board; i++) {
+                pair<pair<int,int>,pair<int,int>> temp = make_pair(make_pair(-1,-1), make_pair(-1,0));
                 vector<pair<pair<int, int>, pair<int, int> > > succ_ring = board.successors(board.rings_vector.at(i));
                 succ_all.reserve(succ_all.size() + succ_ring.size());
 //          cerr << "successors of ring # " << i + 1 << " - " << succ_ring.size() << '\n';
@@ -97,11 +98,12 @@ void Agent::recursive_construct_tree(Board board, Node *node, int depth, int max
             node->children[idx] = new Node;
             node->children[idx]->move = move;
 //      std::cerr << "assigned child " << idx << "its corresponding move" << '\n';
-            bool b = board.move_ring(move.first, move.second);
+            Board b(board);
+            bool c = b.move_ring(move.first, move.second);
 //      std::cerr << "performed move" << '\n';
-            if (b) {
-                recursive_construct_tree(board, node->children[idx], depth + 1, maxDepth);
-                b = board.move_ring(move.second, move.first);
+            if (c) {
+                recursive_construct_tree(b, node->children[idx], depth + 1, maxDepth);
+//                c = board.move_ring(move.second, move.first);
             }
             idx++;
         }
@@ -147,7 +149,7 @@ string Agent::get_next_move() {
         state.num_moves_played++;
         return initial_move();
     }
-    copy_board();
+    state_tree = Board(state);
     Node *tree = new Node;
 //    cerr << "22@" << endl;
     if (state.num_moves_played < 16)
@@ -214,6 +216,7 @@ string Agent::get_next_move() {
                 end.second = start.second + 4;
             }
         }
+        bool trash = state.delete_row(start, end);
         start = state.xy_to_hex(start);
         end = state.xy_to_hex(end);
         // Output string waala part
@@ -223,10 +226,10 @@ string Agent::get_next_move() {
         output += " M";
         output += " " + to_string(move.second.first);
         output += " " + to_string(move.second.second);
-        output += " RE";
+        output += " RS";
         output += " " + to_string(start.first);
         output += " " + to_string(start.second);
-        output += " RS";
+        output += " RE";
         output += " " + to_string(end.first);
         output += " " + to_string(end.second);
         output += " X";
@@ -295,13 +298,13 @@ double Agent::minimax(Node *node) {
       return v
  */
 
-//double Agent::minimax_ab(Board board, Node *node, int depth, double min, double max) {
-//    if (depth == 0)
-//        return calculate_score(board);
-//    else {
-//
-//    }
-//}
+double Agent::minimax_ab(Board board, Node *node, int depth, double min, double max) {
+    if (depth == 0)
+        return calculate_score(board);
+    else {
+
+    }
+}
 
 
 bool Agent::check_won() {

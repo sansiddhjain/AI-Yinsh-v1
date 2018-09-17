@@ -42,6 +42,7 @@ public:
 
 //    Piece() : type('r'), color('o') {}
     Piece(char t, char c, int xcord, int ycord) : type(t), color(c), xcord(xcord), ycord(ycord) {}
+    Piece(const Piece& p) : color(p.color), type(p.type), xcord(p.xcord), ycord(p.ycord) {}
     void flip_color() { color = color == 'o' ? 'b' : 'o';}
 };
 
@@ -55,6 +56,7 @@ public:
     bool is_piece() { return piece != nullptr;}
     bool is_ring() {return  piece != nullptr && piece->type == 'r';}
     bool is_marker() {return piece != nullptr && piece->type == 'm';}
+    Point(const Point &p);
 };
 
 class Board{
@@ -79,7 +81,7 @@ public:
 //    Piece** opp_rings;
 
     Board(int n, int m, int k, int l, char player_col, char other_col);
-//    Board(const Board& b);
+    Board(const Board& b);
 
     int return_n(){ return n; }
     int return_m(){ return m; }

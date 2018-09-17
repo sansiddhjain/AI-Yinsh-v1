@@ -16,20 +16,26 @@ using namespace std;
 
 //todo: are validity checks even necessary before performing moves - REMOVED ALL FOR NOW
 
+Point::Point(const Point &p): xcord(p.xcord), ycord(p.ycord) {
+    if (p.piece != nullptr)
+        piece = new Piece(*p.piece);
+    else
+        piece = nullptr;
+}
+
+//Point& Point::operator=(const Point& p){
+//
+//}
+
 bool Board::is_position_valid(pair<int, int> position) {
     return abs(position.first) <= n && abs(position.second) <= n;
 }
 
-// Constructs Board
-//
-//Board::Board(const Board &b) : rings_vector(b.rings_vector), opp_rings_vector(b.opp_rings_vector) {
-//    n = b.n; m = b.m; k = b.k; l = b.l; player_color = b.player_color; other_color = b.other_color;
-//    num_moves_played = b.num_moves_played; num_rings_on_board = b.num_rings_on_board; num_opp_rings_on_board = b.num_opp_rings_on_board;
-//    num_markers = b.num_markers; num_opp_markers = b.num_opp_markers;
-//
-//
-//
-//}
+Board::Board(const Board &b) : rings_vector(b.rings_vector), opp_rings_vector(b.opp_rings_vector), game_board(b.game_board) {
+    n = b.n; m = b.m; k = b.k; l = b.l; player_color = b.player_color; other_color = b.other_color;
+    num_moves_played = b.num_moves_played; num_rings_on_board = b.num_rings_on_board; num_opp_rings_on_board = b.num_opp_rings_on_board;
+    num_markers = b.num_markers; num_opp_markers = b.num_opp_markers;
+}
 
 
 Board::Board(int n, int m, int k, int l, char player_col, char other_col) : n(n), l(l), m(m), k(k),
@@ -40,11 +46,7 @@ Board::Board(int n, int m, int k, int l, char player_col, char other_col) : n(n)
     num_markers = 0;
     num_opp_markers = 0;
     num_moves_played = 0;
-    // Initialises rings arr to nulls
-//    rings = new Piece*[m];
-//    for(int i = 0; i < m; i++){
-//        rings[i] = nullptr;
-//    }
+
     // Constructs the game board arrays
     for (int i = -n; i <= n; i++) {
         game_board[i];
@@ -107,7 +109,7 @@ bool Board::remove_piece(pair<int, int> position) {
     //todo: is validity check necessary?
 //    if(game_board.at(position.first).at(position.second).is_piece()){ // fails if no piece at position
     if (game_board.at(position.first).at(position.second).piece->type == 'r') {
-        if (game_board.at(position.first).at(position.second).piece->type == player_color) {
+        if (game_board.at(position.first).at(position.second).piece->color == player_color) {
             for (int i = 0; i < num_rings_on_board; i++) {
                 // if (rings_vector.at(i) == position) {
                 if ((rings_vector.at(i).first == position.first) & (rings_vector.at(i).second == position.second)) {
@@ -436,31 +438,23 @@ void Board::execute_move(string move, int playerID) {
     }
     else { // Move Ring, Remove Row, Remove Ring
         // Move piece
-        pair<int, int> start_hex = make_pair(stoi(splitString.at(1)),
-                                             stoi(splitString.at(2))); //start position in hex coordinates
-        pair<int, int> end_hex = make_pair(stoi(splitString.at(4)),
-                                           stoi(splitString.at(5))); //end postion in hex coordinates
-        pair<int, int> start_xy = hex_to_xy(start_hex);
-        pair<int, int> end_xy = hex_to_xy(end_hex);
-//        std::cerr << start_xy.first << ", " << start_xy.second << '\n';
-//        std::cerr << end_xy.first << ", " << end_xy.second << '\n';
-        move_ring(start_xy, end_xy);
-        // Delete row
-        pair<int, int> row_start_hex = make_pair(stoi(splitString.at(7)),
-                                                 stoi(splitString.at(8))); //row starting position in hex coordinates
-        pair<int, int> row_end_hex = make_pair(stoi(splitString.at(10)),
-                                               stoi(splitString.at(11))); //row ending postion in hex coordinates
-        pair<int, int> row_start_xy = hex_to_xy(row_start_hex);
-        pair<int, int> row_end_xy = hex_to_xy(row_end_hex);
-//        std::cerr << row_start_xy.first << ", " << row_start_xy.second << '\n';
-//        std::cerr << row_end_xy.first << ", " << row_end_xy.second << '\n';
-        delete_row(row_start_xy, row_end_xy);
-        // Remove Ring
-        pair<int, int> ring_hex = make_pair(stoi(splitString.at(13)),
-                                            stoi(splitString.at(14))); //position in hex coordinates
-        pair<int, int> ring_xy = hex_to_xy(ring_hex);
-//        std::cerr << ring_xy.first << ", " << ring_xy.second << '\n';
-        remove_piece(ring_xy);
+        pair<int, int> start_hex, end_hex, row_start_hex, row_end_hex, ring_hex;
+        for (int i = 0; i < 15; i+=3)
+        {
+            if (splitString.at(i) == "S")
+                start_hex = make_pair(stoi(splitString.at(i+1)), stoi(splitString.at(i+2)));
+            else if (splitString.at(i) == "M")
+                end_hex = make_pair(stoi(splitString.at(i+1)), stoi(splitString.at(i+2)));
+            else if (splitString.at(i) == "RS")
+                row_start_hex = make_pair(stoi(splitString.at(i+1)), stoi(splitString.at(i+2)));
+            else if (splitString.at(i) == "RE")
+                row_end_hex = make_pair(stoi(splitString.at(i+1)), stoi(splitString.at(i+2)));
+            else
+                ring_hex = make_pair(stoi(splitString.at(i+1)), stoi(splitString.at(i+2)));
+        }
+        move_ring(hex_to_xy(start_hex), hex_to_xy(end_hex));
+        delete_row(hex_to_xy(row_start_hex), hex_to_xy(row_end_hex));
+        remove_piece(hex_to_xy(ring_hex));
     }
 }
 
