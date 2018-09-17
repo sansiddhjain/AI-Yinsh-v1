@@ -157,22 +157,23 @@ string Agent::get_next_move() {
     }
     state_tree = Board(state);
     Node *tree = new Node;
+    tree->type = 'M';
 //    cerr << "22@" << endl;
     if (state.num_moves_played < 16) {
-        cerr << "DEPTH 2" << endl;
-        minimax_ab(state_tree, tree, 2, -INFINITY, INFINITY);
-//        recursive_construct_tree(state_tree, tree, 0, 1);
+//        cerr << "DEPTH 2" << endl;
+        minimax_ab(state_tree, tree, 0, -INFINITY, INFINITY, 2);
+//        recursive_construct_tree(state_tree, tree, 0, 2);
 
     }
     else if (state.num_moves_played < 22) {
-        cerr << "DEPTH 3" << endl;
-        minimax_ab(state_tree, tree, 3, -INFINITY, INFINITY);
-//        recursive_construct_tree(state_tree, tree, 0, 2);
+//        cerr << "DEPTH 3" << endl;
+        minimax_ab(state_tree, tree, 0, -INFINITY, INFINITY, 3);
+//        recursive_construct_tree(state_tree, tree, 0, 3);
     }
     else {
-        cerr << "DEPTH 4" << endl;
-        minimax_ab(state_tree, tree, 4, -INFINITY, INFINITY);
-//        recursive_construct_tree(state_tree, tree, 0, 3);
+//        cerr << "DEPTH 4" << endl;
+        minimax_ab(state_tree, tree, 0, -INFINITY, INFINITY, 4);
+//        recursive_construct_tree(state_tree, tree, 0,4);
     }
 //    cerr << "111" <<endl;
 //    int trash = minimax(tree);
@@ -298,8 +299,8 @@ double Agent::minimax(Node *node) {
 // void minimax_ab() {}
 
 
-double Agent::minimax_ab(Board board, Node *node, int depth, double min, double max) {
-    if (depth == 0)
+double Agent::minimax_ab(Board board, Node *node, int depth, double alpha, double beta, int maxDepth) {
+    if (depth == maxDepth)
         return calculate_score(board);
     else {
         node->isLeaf = false;
@@ -324,45 +325,68 @@ double Agent::minimax_ab(Board board, Node *node, int depth, double min, double 
         node->children = new Node*[succ_all.size()];
 
         if(node->type == 'M') {
-            double v = min;
+            double v = -INFINITY;
             for (int i = 0; i < succ_all.size(); i++) {
                 node->children[i] = new Node;
                 node->children[i]->move = succ_all[i];
                 node->children[i]->type == 'm';
                 Board temp_board(board);
                 temp_board.move_ring(succ_all[i].first, succ_all[i].second);
-                double v_prime = minimax_ab(temp_board, node->children[i], depth - 1, v, max);
+                double v_prime = minimax_ab(temp_board, node->children[i], depth + 1, v, beta, maxDepth);
                 if(v_prime > v){
                     v = v_prime;
-                    node->children[i]->score = v_prime;
                     node->gotoidx = i;
+//                    node->children[i]->score = v_prime;
+//                    node->gotoidx = i;
                 }
-                if(v > max)
-                    return max;
+                alpha = max(alpha, v);
+                if (alpha >= beta)
+                    break;
             }
             return v;
         }
         else {
-            double v = max;
+            double v = INFINITY;
             for (int i = 0; i < succ_all.size(); i++) {
                 node->children[i] = new Node;
                 node->children[i]->move = succ_all[i];
                 node->children[i]->type = 'M';
                 Board temp_board(board);
                 temp_board.move_ring(succ_all[i].first, succ_all[i].second);
-                double v_prime = minimax_ab(temp_board, node->children[i], depth - 1, min, v);
+                double v_prime = minimax_ab(temp_board, node->children[i], depth + 1, alpha, v, maxDepth);
                 if(v_prime < v) {
                     v = v_prime;
-                    node->children[i]->score = v_prime;
+//                    node->children[i]->score = v_prime;
                     node->gotoidx = i;
                 }
-                if(v < min)
-                    return min;
+                beta = min(beta, v);
+                if (alpha >= beta)
+                    break;
             }
             return v;
         }
     }
 }
+
+/*
+ * function alphabeta(node, α, β, maximizingPlayer)
+        if node is a terminal node
+            return { value: value of node, node : node}
+        if maximizingPlayer
+            v = -∞
+            bestNode = None
+            for each child of node
+                localMax = alphabeta(child, α, β, FALSE)
+                if localMax.value > v
+                    v = localMax.value
+                    bestNode = localMax.node
+
+                α = max(α, v)
+                if β ≤ α
+                    break
+            return {value : v, node: bestNode}
+ */
+
 
 
 /*
