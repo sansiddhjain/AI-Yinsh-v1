@@ -5,6 +5,7 @@
 #ifndef YINSH_AI_AGENT_H
 #define YINSH_AI_AGENT_H
 
+#include <cmath>
 #include "Board.h"
 
 class Node {
@@ -17,6 +18,7 @@ public:
   int beta;
   char type; //M - max, m - min
   int gotoidx; //The index of child to go to
+  Node() : score(0), isLeaf(false), alpha(-INFINITY), beta(INFINITY), type('u'), gotoidx(-1) {}
 };
 
 class Agent {

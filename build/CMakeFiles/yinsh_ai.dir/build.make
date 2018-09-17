@@ -43,10 +43,10 @@ RM = /opt/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI"
+CMAKE_SOURCE_DIR = "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/build"
+CMAKE_BINARY_DIR = "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/build"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/yinsh_ai.dir/depend.make
@@ -59,42 +59,42 @@ include CMakeFiles/yinsh_ai.dir/flags.make
 
 CMakeFiles/yinsh_ai.dir/main.cpp.o: CMakeFiles/yinsh_ai.dir/flags.make
 CMakeFiles/yinsh_ai.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/yinsh_ai.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/main.cpp.o -c "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/yinsh_ai.dir/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/main.cpp.o -c "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/main.cpp"
 
 CMakeFiles/yinsh_ai.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yinsh_ai.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/main.cpp" > CMakeFiles/yinsh_ai.dir/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/main.cpp" > CMakeFiles/yinsh_ai.dir/main.cpp.i
 
 CMakeFiles/yinsh_ai.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yinsh_ai.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/main.cpp" -o CMakeFiles/yinsh_ai.dir/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/main.cpp" -o CMakeFiles/yinsh_ai.dir/main.cpp.s
 
 CMakeFiles/yinsh_ai.dir/Board.cpp.o: CMakeFiles/yinsh_ai.dir/flags.make
 CMakeFiles/yinsh_ai.dir/Board.cpp.o: ../Board.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/yinsh_ai.dir/Board.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/Board.cpp.o -c "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Board.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/yinsh_ai.dir/Board.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/Board.cpp.o -c "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/Board.cpp"
 
 CMakeFiles/yinsh_ai.dir/Board.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yinsh_ai.dir/Board.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Board.cpp" > CMakeFiles/yinsh_ai.dir/Board.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/Board.cpp" > CMakeFiles/yinsh_ai.dir/Board.cpp.i
 
 CMakeFiles/yinsh_ai.dir/Board.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yinsh_ai.dir/Board.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Board.cpp" -o CMakeFiles/yinsh_ai.dir/Board.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/Board.cpp" -o CMakeFiles/yinsh_ai.dir/Board.cpp.s
 
 CMakeFiles/yinsh_ai.dir/Agent.cpp.o: CMakeFiles/yinsh_ai.dir/flags.make
 CMakeFiles/yinsh_ai.dir/Agent.cpp.o: ../Agent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/yinsh_ai.dir/Agent.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/Agent.cpp.o -c "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Agent.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/yinsh_ai.dir/Agent.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/Agent.cpp.o -c "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/Agent.cpp"
 
 CMakeFiles/yinsh_ai.dir/Agent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yinsh_ai.dir/Agent.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Agent.cpp" > CMakeFiles/yinsh_ai.dir/Agent.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/Agent.cpp" > CMakeFiles/yinsh_ai.dir/Agent.cpp.i
 
 CMakeFiles/yinsh_ai.dir/Agent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yinsh_ai.dir/Agent.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/Agent.cpp" -o CMakeFiles/yinsh_ai.dir/Agent.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/Agent.cpp" -o CMakeFiles/yinsh_ai.dir/Agent.cpp.s
 
 # Object files for target yinsh_ai
 yinsh_ai_OBJECTS = \
@@ -110,7 +110,7 @@ yinsh_ai: CMakeFiles/yinsh_ai.dir/Board.cpp.o
 yinsh_ai: CMakeFiles/yinsh_ai.dir/Agent.cpp.o
 yinsh_ai: CMakeFiles/yinsh_ai.dir/build.make
 yinsh_ai: CMakeFiles/yinsh_ai.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable yinsh_ai"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable yinsh_ai"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/yinsh_ai.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -123,6 +123,6 @@ CMakeFiles/yinsh_ai.dir/clean:
 .PHONY : CMakeFiles/yinsh_ai.dir/clean
 
 CMakeFiles/yinsh_ai.dir/depend:
-	cd "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/build" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/build" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/build/CMakeFiles/yinsh_ai.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/build" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/build" "/Users/sansiddhjain/Studies/Sem IX/COL671/Assignments/yinsh-solver/Yinsh-AI/col671-assgn2/build/CMakeFiles/yinsh_ai.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/yinsh_ai.dir/depend
 

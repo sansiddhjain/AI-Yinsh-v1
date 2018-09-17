@@ -73,6 +73,9 @@ void Agent::recursive_construct_tree(Board board, Node* node, int depth, int max
       for (int i = 0; i < state.num_rings_on_board; i++)
       {
           vector< pair< pair<int,int>, pair<int,int> > > succ_ring = board.successors(board.rings_vector.at(i));
+          succ_all.reserve(succ_all.size()+succ_ring.size());
+          cerr << "successors of ring # " << i + 1 << " - " << succ_ring.size() << '\n';
+          cerr << "all successors seen till now - " << succ_all.size() << '\n';
           succ_all.insert(succ_all.end(), succ_ring.begin(), succ_ring.end());
       }
     }
@@ -88,13 +91,21 @@ void Agent::recursive_construct_tree(Board board, Node* node, int depth, int max
     }
     cerr << "Reached here, depth = " << depth << endl;
     node->children = new Node*[succ_all.size()];
+    std::cerr << "created node->children" << '\n';
     vector< pair< pair<int,int>, pair<int,int> > >::iterator ptr;
+    std::cerr << "created iterator" << '\n';
     int idx = 0;
-    for (ptr = succ_all.begin(); ptr < succ_all.end(); ptr++)
+    std::cerr << "going inside loop for all children" << '\n';
+    for (ptr = succ_all.begin(); ptr != succ_all.end(); ptr++)
     {
       pair< pair<int,int>, pair<int,int> > move = *ptr;
+      std::cerr << move.first.first << ", " << move.first.second << "; " << move.second.first << ", " << move.second.second << '\n';
+      std::cerr << "Entered loop" << '\n';
+      node->children[idx]= new Node;
       node->children[idx]->move = move;
+      std::cerr << "assigned child " << idx << "its corresponding move" << '\n';
       bool b = board.move_ring(move.first, move.second);
+      std::cerr << "performed move" << '\n';
       if (b)
       {
         recursive_construct_tree(board, node->children[idx], depth+1, maxDepth);
@@ -147,10 +158,16 @@ string Agent::get_next_move() {
     copy_board();
     Node* tree = new Node;
     cerr << "22@" << endl;
-    recursive_construct_tree(state_tree, tree, 0, 4);
+    if (state.num_moves_played < 7)
+      recursive_construct_tree(state_tree, tree, 0, 1);
+    else if (state.num_moves_played < 15)
+      recursive_construct_tree(state_tree, tree, 0, 2);
+    else
+      recursive_construct_tree(state_tree, tree, 0, 3);
     cerr << "111" <<endl;
     int trash = minimax(tree);
     pair< pair<int, int>, pair<int, int> > move = tree->children[tree->gotoidx]->move;
+    std::cerr << move.first.first << ", " << move.first.second << "; " << move.second.first << ", " << move.second.second << '\n';
     bool b = state.move_ring(move.first, move.second);
     // convert to string to send to server
     vector< pair< pair<int,int>, pair<int,int> > > five_or_more = state.get_marker_rows(5, state.player_color);
@@ -228,6 +245,7 @@ string Agent::get_next_move() {
       output += " " + to_string(ring.second);
       return output;
     }
+    state.num_moves_played++;
 }
 
 // Vanilla minimax

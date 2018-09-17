@@ -25,6 +25,7 @@ Board::Board(int n, int m, int k, int l, char player_col, char other_col) : n(n)
     num_opp_rings_on_board = 0;
     num_markers = 0;
     num_opp_markers = 0;
+    num_moves_played = 0;
     // Initialises rings arr to nulls
     rings = new Piece*[m];
     for(int i = 0; i < m; i++){
