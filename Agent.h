@@ -40,6 +40,7 @@ public:
     double minimax(Node* node);
     bool check_won();
     string initial_move();
+    double minimax_ab(Board board, Node *node, int depth, double min, double max);
 };
 
 

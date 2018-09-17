@@ -79,8 +79,8 @@ void Agent::recursive_construct_tree(Board board, Node *node, int depth, int max
 //            cerr << "opp" << endl;
             node->type = 'm';
             for (int i = 0; i < state.num_opp_rings_on_board; i++) {
-                vector<pair<pair<int, int>, pair<int, int> > > succ_ring = board.successors(
-                        board.opp_rings_vector.at(i));
+                vector<pair<pair<int, int>, pair<int, int> > > succ_ring = board.successors(board.opp_rings_vector.at(i));
+                succ_all.reserve(succ_all.size() + succ_ring.size());
                 succ_all.insert(succ_all.end(), succ_ring.begin(), succ_ring.end());
             }
         }
@@ -145,21 +145,31 @@ string Agent::initial_move() {
 string Agent::get_next_move() {
     // IMPORTANT - Also executes next move
     if ((state.num_rings_on_board < state.return_m()) & (state.num_markers == 0)) {
-        // Perform placement of ring
+        // Perform placement of ring, todo: figure strategy
         state.num_moves_played++;
         return initial_move();
     }
     state_tree = Board(state);
     Node *tree = new Node;
 //    cerr << "22@" << endl;
-    if (state.num_moves_played < 16)
-        recursive_construct_tree(state_tree, tree, 0, 1);
-    else if (state.num_moves_played < 22)
-        recursive_construct_tree(state_tree, tree, 0, 2);
-    else
-        recursive_construct_tree(state_tree, tree, 0, 3);
+    if (state.num_moves_played < 16) {
+        cerr << "DEPTH 2" << endl;
+        minimax_ab(state_tree, tree, 2, -INFINITY, INFINITY);
+//        recursive_construct_tree(state_tree, tree, 0, 1);
+
+    }
+    else if (state.num_moves_played < 22) {
+        cerr << "DEPTH 3" << endl;
+        minimax_ab(state_tree, tree, 3, -INFINITY, INFINITY);
+//        recursive_construct_tree(state_tree, tree, 0, 2);
+    }
+    else {
+        cerr << "DEPTH 4" << endl;
+        minimax_ab(state_tree, tree, 4, -INFINITY, INFINITY);
+//        recursive_construct_tree(state_tree, tree, 0, 3);
+    }
 //    cerr << "111" <<endl;
-    int trash = minimax(tree);
+//    int trash = minimax(tree);
     pair<pair<int, int>, pair<int, int> > move = tree->children[tree->gotoidx]->move;
     std::cerr << move.first.first << ", " << move.first.second << "; " << move.second.first << ", "
               << move.second.second << '\n';
@@ -233,6 +243,7 @@ string Agent::get_next_move() {
         output += " " + to_string(end.first);
         output += " " + to_string(end.second);
         output += " X";
+        //todo: figure out which ring to removes
         pair<int, int> ring = state.rings_vector.at(state.num_rings_on_board - 1);
         bool b = state.remove_piece(ring);
         ring = state.xy_to_hex(ring);
@@ -279,6 +290,75 @@ double Agent::minimax(Node *node) {
 }
 // Minimax with Alpha Beta Pruning
 // void minimax_ab() {}
+
+
+double Agent::minimax_ab(Board board, Node *node, int depth, double min, double max) {
+    if (depth == 0)
+        return calculate_score(board);
+    else {
+        node->isLeaf = false;
+        vector<pair<pair<int, int>, pair<int, int> > > succ_all;
+        if (depth % 2 == 0) {//Self player is playing
+            node->type = 'M';
+            for (int i = 0; i < state.num_rings_on_board; i++) {
+                vector<pair<pair<int, int>, pair<int, int> > > succ_ring = board.successors(board.rings_vector.at(i));
+                succ_all.reserve(succ_all.size() + succ_ring.size());
+                succ_all.insert(succ_all.end(), succ_ring.begin(), succ_ring.end());
+            }
+        }
+        else {//Opponent is playing
+            node->type = 'm';
+            for (int i = 0; i < state.num_opp_rings_on_board; i++) {
+                vector<pair<pair<int, int>, pair<int, int> > > succ_ring = board.successors(board.opp_rings_vector.at(i));
+                succ_all.reserve(succ_all.size() + succ_ring.size());
+                succ_all.insert(succ_all.end(), succ_ring.begin(), succ_ring.end());
+            }
+        }
+
+        node->children = new Node*[succ_all.size()];
+
+        if(node->type == 'M') {
+            double v = min;
+            for (int i = 0; i < succ_all.size(); i++) {
+                node->children[i] = new Node;
+                node->children[i]->move = succ_all[i];
+                node->children[i]->type == 'm';
+                Board temp_board(board);
+                temp_board.move_ring(succ_all[i].first, succ_all[i].second);
+                double v_prime = minimax_ab(temp_board, node->children[i], depth - 1, v, max);
+                if(v_prime > v){
+                    v = v_prime;
+                    node->children[i]->score = v_prime;
+                    node->gotoidx = i;
+                }
+                if(v > max)
+                    return max;
+            }
+            return v;
+        }
+        else {
+            double v = max;
+            for (int i = 0; i < succ_all.size(); i++) {
+                node->children[i] = new Node;
+                node->children[i]->move = succ_all[i];
+                node->children[i]->type = 'M';
+                Board temp_board(board);
+                temp_board.move_ring(succ_all[i].first, succ_all[i].second);
+                double v_prime = minimax_ab(temp_board, node->children[i], depth - 1, min, v);
+                if(v_prime < v) {
+                    v = v_prime;
+                    node->children[i]->score = v_prime;
+                    node->gotoidx = i;
+                }
+                if(v < min)
+                    return min;
+            }
+            return v;
+        }
+    }
+}
+
+
 /*
  * fun minimax(n: node, d: int, min: int, max: int): int =
    if leaf(n) or depth=0 return evaluate(n)
@@ -297,15 +377,6 @@ double Agent::minimax(Node *node) {
          if v < min return min
       return v
  */
-
-double Agent::minimax_ab(Board board, Node *node, int depth, double min, double max) {
-    if (depth == 0)
-        return calculate_score(board);
-    else {
-
-    }
-}
-
 
 bool Agent::check_won() {
     return state.num_rings_on_board == (state.return_m() - state.return_l());
