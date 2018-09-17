@@ -1,0 +1,60 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp
+string
+-
+cmath
+-
+algorithm
+-
+Agent.h
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.h
+iostream
+-
+
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.h
+cmath
+-
+Board.h
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Board.h
+
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Board.cpp
+Board.h
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Board.h
+sstream
+-
+vector
+-
+iostream
+-
+algorithm
+-
+
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Board.h
+utility
+-
+vector
+-
+map
+-
+
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/test.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+utility
+-
+Board.h
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Board.h
+Agent.h
+/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.h
+

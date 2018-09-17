@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test
+
+# Build rule for target.
+test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test
+.PHONY : test
+
+# fast build rule for target.
+test/fast:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
+.PHONY : test/fast
+
+#=============================================================================
 # Target rules for targets named yinsh_ai
 
 # Build rule for target.
@@ -129,6 +142,7 @@ Agent.o: Agent.cpp.o
 
 # target to build an object file
 Agent.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Agent.cpp.o
 	$(MAKE) -f CMakeFiles/yinsh_ai.dir/build.make CMakeFiles/yinsh_ai.dir/Agent.cpp.o
 .PHONY : Agent.cpp.o
 
@@ -138,6 +152,7 @@ Agent.i: Agent.cpp.i
 
 # target to preprocess a source file
 Agent.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Agent.cpp.i
 	$(MAKE) -f CMakeFiles/yinsh_ai.dir/build.make CMakeFiles/yinsh_ai.dir/Agent.cpp.i
 .PHONY : Agent.cpp.i
 
@@ -147,6 +162,7 @@ Agent.s: Agent.cpp.s
 
 # target to generate assembly for a file
 Agent.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Agent.cpp.s
 	$(MAKE) -f CMakeFiles/yinsh_ai.dir/build.make CMakeFiles/yinsh_ai.dir/Agent.cpp.s
 .PHONY : Agent.cpp.s
 
@@ -156,6 +172,7 @@ Board.o: Board.cpp.o
 
 # target to build an object file
 Board.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Board.cpp.o
 	$(MAKE) -f CMakeFiles/yinsh_ai.dir/build.make CMakeFiles/yinsh_ai.dir/Board.cpp.o
 .PHONY : Board.cpp.o
 
@@ -165,6 +182,7 @@ Board.i: Board.cpp.i
 
 # target to preprocess a source file
 Board.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Board.cpp.i
 	$(MAKE) -f CMakeFiles/yinsh_ai.dir/build.make CMakeFiles/yinsh_ai.dir/Board.cpp.i
 .PHONY : Board.cpp.i
 
@@ -174,6 +192,7 @@ Board.s: Board.cpp.s
 
 # target to generate assembly for a file
 Board.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Board.cpp.s
 	$(MAKE) -f CMakeFiles/yinsh_ai.dir/build.make CMakeFiles/yinsh_ai.dir/Board.cpp.s
 .PHONY : Board.cpp.s
 
@@ -204,6 +223,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/yinsh_ai.dir/build.make CMakeFiles/yinsh_ai.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+test.o: test.cpp.o
+
+.PHONY : test.o
+
+# target to build an object file
+test.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.o
+.PHONY : test.cpp.o
+
+test.i: test.cpp.i
+
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.s
+.PHONY : test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -212,6 +258,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
 	@echo "... yinsh_ai"
 	@echo "... Agent.o"
 	@echo "... Agent.i"
@@ -222,6 +269,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 

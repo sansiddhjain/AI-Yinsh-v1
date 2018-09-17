@@ -49,7 +49,13 @@ double Agent::score_function(vector<pair<pair<int, int>, pair<int, int> > > vec)
 double Agent::calculate_score(Board board) {
     vector<pair<pair<int, int>, pair<int, int> > > player_markers = board.get_marker_rows(1, board.player_color);
     vector<pair<pair<int, int>, pair<int, int> > > opp_markers = board.get_marker_rows(1, board.other_color);
-    return score_function(player_markers) - score_function(opp_markers);
+    double score = score_function(player_markers) - score_function(opp_markers);
+    vector<pair<pair<int, int>, pair<int, int> > > five_or_more = state.get_marker_rows(5, state.player_color);
+    if (!five_or_more.empty())
+      score += 100000;
+    five_or_more = state.get_marker_rows(5, state.other_color);
+    if (!five_or_more.empty())
+      score += -100000;
 }
 
 // Recursively construct tree normally
@@ -145,7 +151,7 @@ string Agent::initial_move() {
 string Agent::get_next_move() {
     // IMPORTANT - Also executes next move
     if ((state.num_rings_on_board < state.return_m()) & (state.num_markers == 0)) {
-        // Perform placement of ring, todo: figure strategy
+        // Perform placement of ring
         state.num_moves_played++;
         return initial_move();
     }
@@ -377,6 +383,9 @@ double Agent::minimax_ab(Board board, Node *node, int depth, double min, double 
          if v < min return min
       return v
  */
+
+
+
 
 bool Agent::check_won() {
     return state.num_rings_on_board == (state.return_m() - state.return_l());
