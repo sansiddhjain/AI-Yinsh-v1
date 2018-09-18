@@ -41,6 +41,7 @@ public:
     bool check_won();
     string initial_move();
     double minimax_ab(Board board, Node *node, int depth, double min, double max, int maxDepth);
+    double minimax_ab_sort(Board board, Node *node, int depth, double alpha, double beta, int maxDepth);
 };
 
 

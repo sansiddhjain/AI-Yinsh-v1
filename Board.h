@@ -78,6 +78,9 @@ public:
     bool remove_piece(pair<int,int> position);
     bool move_ring(pair<int,int> p1, pair<int, int> p2);
     bool delete_row(pair<int,int> p1, pair<int,int> p2);
+    double score_function(vector<pair<pair<int, int>, pair<int, int> > > vec);
+    double calculate_score();
+    multimap< double, pair<pair<int, int>, pair<int, int> > > successors_score(pair<int,int> initial_pos);
     vector< pair< pair<int,int>, pair<int,int> > > successors(pair<int,int> initial_pos);
     pair<int,int> xy_to_hex(pair<int,int> point);
     pair<int,int> hex_to_xy(pair<int,int> hex_point);

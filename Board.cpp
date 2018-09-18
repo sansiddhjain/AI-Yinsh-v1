@@ -336,6 +336,151 @@ pair<int, int> Board::hex_to_xy(pair<int, int> hex_point) {
         return make_pair(hp - 6 * h, hp - 5 * h);
 }
 
+double Board::score_function(vector<pair<pair<int, int>, pair<int, int> > > vec) {
+    vector<pair<pair<int, int>, pair<int, int> > >::iterator ptr;
+
+    double result = 0;
+    for (ptr = vec.begin(); ptr < vec.end(); ptr++) {
+        pair<pair<int, int>, pair<int, int> > tuple = *ptr;
+        pair<int, int> start = tuple.first;
+        pair<int, int> end = tuple.second;
+        if (start.first == end.first) // x coordinate same case
+            result += pow(3.0, (fabs(end.second - start.second) + 1)) - 1;
+        else if (start.second == end.second) // y coordinate same case
+            result += pow(3.0, (fabs(end.first - start.first) + 1)) - 1;
+        else // x - y = k
+            result += pow(3.0, (fabs(end.first - start.first) + 1)) - 1;
+        // Can think of combining else and else if
+    }
+    return 0.5 * result;
+}
+
+// Calculate score of player, subtract score of opponent
+double Board::calculate_score() {
+    vector<pair<pair<int, int>, pair<int, int> > > player_markers = get_marker_rows(1, player_color);
+    vector<pair<pair<int, int>, pair<int, int> > > opp_markers = get_marker_rows(1, other_color);
+    double score = score_function(player_markers) - score_function(opp_markers);
+    vector<pair<pair<int, int>, pair<int, int> > > five_or_more = get_marker_rows(5, player_color);
+    if (!five_or_more.empty())
+        score += 100000;
+    five_or_more = get_marker_rows(5, other_color);
+    if (!five_or_more.empty())
+        score += -100000;
+    return score;
+}
+
+// Returns the successors for a particular initial position, along with score
+multimap< double, pair<pair<int, int>, pair<int, int> > > Board::successors_score(pair<int, int> initial_pos) {
+    multimap< double, pair<pair<int, int>, pair<int, int> > > successors;
+    //todo: clean code
+    // iterate y
+    int i = 1;
+    map<int, Point> base = game_board.find(initial_pos.first)->second;
+    while (true) {
+        if (base.find(initial_pos.second + i) == base.end())
+            break;
+        if (base.at(initial_pos.second + i).is_ring())
+            break;
+        if (!base.at(initial_pos.second + i).is_piece()) {
+            Board temp_board = Board(*this);
+            pair<int, int> final_pos = make_pair(initial_pos.first, initial_pos.second + i);
+            temp_board.move_ring(initial_pos, final_pos);
+            successors.insert(make_pair(temp_board.calculate_score(), make_pair(initial_pos, final_pos)));
+            break;
+        }
+        i++;
+    }
+    i = 1;
+    while (true) {
+        if (base.find(initial_pos.second - i) == base.end())
+            break;
+        if (base.at(initial_pos.second - i).is_ring())
+            break;
+        if (!base.at(initial_pos.second - i).is_piece()) {
+            Board temp_board = Board(*this);
+            pair<int, int> final_pos = make_pair(initial_pos.first, initial_pos.second - i);
+            temp_board.move_ring(initial_pos, final_pos);
+            successors.insert(make_pair(temp_board.calculate_score(), make_pair(initial_pos, final_pos)));
+            break;
+        }
+        i++;
+    }
+
+    // iterate x
+    i = 1;
+    while (true) {
+        if (game_board.find(initial_pos.first + i) == game_board.end() ||
+            game_board.find(initial_pos.first + i)->second.find(initial_pos.second) ==
+            game_board.find(initial_pos.first + i)->second.end())
+            break;
+        if (game_board.at(initial_pos.first + i).at(initial_pos.second).is_ring())
+            break;
+        if (!game_board.at(initial_pos.first + i).at(initial_pos.second).is_piece()) {
+            Board temp_board = Board(*this);
+            pair<int, int> final_pos = make_pair(initial_pos.first + i, initial_pos.second);
+            temp_board.move_ring(initial_pos, final_pos);
+            successors.insert(make_pair(temp_board.calculate_score(), make_pair(initial_pos, final_pos)));
+            break;
+        }
+        i++;
+    }
+    i = 1;
+    while (true) {
+        if (game_board.find(initial_pos.first - i) == game_board.end() ||
+            game_board.find(initial_pos.first - i)->second.find(initial_pos.second) ==
+            game_board.find(initial_pos.first - i)->second.end())
+            break;
+        if (game_board.at(initial_pos.first - i).at(initial_pos.second).is_ring())
+            break;
+        if (!game_board.at(initial_pos.first - i).at(initial_pos.second).is_piece()) {
+            Board temp_board = Board(*this);
+            pair<int, int> final_pos = make_pair(initial_pos.first - i, initial_pos.second);
+            temp_board.move_ring(initial_pos, final_pos);
+            successors.insert(make_pair(temp_board.calculate_score(), make_pair(initial_pos, final_pos)));
+            break;
+        }
+        i++;
+    }
+
+    //iterate x=y
+    i = 1;
+    while (true) {
+        if (game_board.find(initial_pos.first + i) == game_board.end() ||
+            game_board.find(initial_pos.first + i)->second.find(initial_pos.second + i) ==
+            game_board.find(initial_pos.first + i)->second.end())
+            break;
+        if (game_board.at(initial_pos.first + i).at(initial_pos.second + i).is_ring())
+            break;
+        if (!game_board.at(initial_pos.first + i).at(initial_pos.second + i).is_piece()) {
+            Board temp_board = Board(*this);
+            pair<int, int> final_pos = make_pair(initial_pos.first + i, initial_pos.second + i);
+            temp_board.move_ring(initial_pos, final_pos);
+            successors.insert(make_pair(temp_board.calculate_score(), make_pair(initial_pos, final_pos)));
+            break;
+        }
+        i++;
+    }
+    i = 1;
+    while (true) {
+        if (game_board.find(initial_pos.first - i) == game_board.end() ||
+            game_board.find(initial_pos.first - i)->second.find(initial_pos.second - i) ==
+            game_board.find(initial_pos.first - i)->second.end())
+            break;
+        if (game_board.at(initial_pos.first - i).at(initial_pos.second - i).is_ring())
+            break;
+        if (!game_board.at(initial_pos.first - i).at(initial_pos.second - i).is_piece()) {
+            Board temp_board = Board(*this);
+            pair<int, int> final_pos = make_pair(initial_pos.first - i, initial_pos.second - i);
+            temp_board.move_ring(initial_pos, final_pos);
+            successors.insert(make_pair(temp_board.calculate_score(), make_pair(initial_pos, final_pos)));
+            break;
+        }
+        i++;
+    }
+
+    return successors;
+}
+
 // Returns the successors for a particular initial position
 vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> initial_pos) {
     vector<pair<pair<int, int>, pair<int, int> > > successors;

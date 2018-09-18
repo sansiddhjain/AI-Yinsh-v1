@@ -56,6 +56,7 @@ double Agent::calculate_score(Board board) {
     five_or_more = state.get_marker_rows(5, state.other_color);
     if (!five_or_more.empty())
       score += -100000;
+    return score;
 }
 
 // Recursively construct tree normally
@@ -340,6 +341,77 @@ double Agent::minimax_ab(Board board, Node *node, int depth, double alpha, doubl
                 beta = min(beta, v);
                 if (alpha >= beta)
                     break;
+            }
+            return v;
+        }
+    }
+}
+
+double Agent::minimax_ab_sort(Board board, Node *node, int depth, double alpha, double beta, int maxDepth) {
+    if (depth == maxDepth)
+        return calculate_score(board);
+    else {
+        node->isLeaf = false;
+        multimap< double, pair<pair<int, int>, pair<int, int> > > succ_all;
+        if (depth % 2 == 0) {//Self player is playing
+            node->type = 'M';
+            for (int i = 0; i < state.num_rings_on_board; i++) {
+                multimap< double, pair<pair<int, int>, pair<int, int> > > succ_ring = board.successors_score(board.rings_vector.at(i));
+//                succ_all.reserve(succ_all.size() + succ_ring.size());
+                succ_all.insert(succ_ring.begin(), succ_ring.end());
+            }
+        }
+        else {//Opponent is playing
+            node->type = 'm';
+            for (int i = 0; i < state.num_opp_rings_on_board; i++) {
+                multimap< double, pair<pair<int, int>, pair<int, int> > > succ_ring = board.successors_score(board.opp_rings_vector.at(i));
+//                succ_all.reserve(succ_all.size() + succ_ring.size());
+                succ_all.insert(succ_ring.begin(), succ_ring.end());
+            }
+        }
+
+        node->children = new Node*[succ_all.size()];
+
+        multimap< double, pair<pair<int, int>, pair<int, int> > >::iterator it;
+        if(node->type == 'M') {
+            double v = -INFINITY;
+            int i = 0;
+            for (it=succ_all.begin(); it!=succ_all.end(); ++it){
+                node->children[i] = new Node;
+                node->children[i]->move = it->second;
+                node->children[i]->type = 'm';
+                Board temp_board(board);
+                temp_board.move_ring(it->second.first, it->second.second);
+                double v_prime = minimax_ab(temp_board, node->children[i], depth + 1, v, beta, maxDepth);
+                if(v_prime > v){
+                    v = v_prime;
+                    node->gotoidx = i;
+                }
+                alpha = max(alpha, v);
+                if (alpha >= beta)
+                    break;
+                i++;
+            }
+            return v;
+        }
+        else {
+            double v = INFINITY;
+            int i = 0;
+            for (it=succ_all.end(); it!=succ_all.begin(); --it){
+                node->children[i] = new Node;
+                node->children[i]->move = it->second;
+                node->children[i]->type = 'M';
+                Board temp_board(board);
+                temp_board.move_ring(it->second.first, it->second.second);
+                double v_prime = minimax_ab(temp_board, node->children[i], depth + 1, alpha, v, maxDepth);
+                if(v_prime < v) {
+                    v = v_prime;
+                    node->gotoidx = i;
+                }
+                beta = min(beta, v);
+                if (alpha >= beta)
+                    break;
+                i++;
             }
             return v;
         }
