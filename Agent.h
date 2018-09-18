@@ -32,7 +32,7 @@ public:
 
     Agent(int playerID, int board_size, double time_left, char player_col, char other_col) : playerID(playerID), n(board_size), time_left(time_left), state(board_size, 5, 5, 3, player_col, other_col), state_tree(board_size, 5, 5, 3, player_col, other_col) {}
     void execute_move(string move, int playerID);
-    void copy_board();
+//    void copy_board();
     double score_function(vector< pair< pair<int,int>, pair<int,int> > > vec);
     double calculate_score(Board board);
     void recursive_construct_tree(Board board, Node* node, int depth, int maxDepth);

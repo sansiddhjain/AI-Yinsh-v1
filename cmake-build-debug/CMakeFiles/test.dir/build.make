@@ -57,18 +57,18 @@ include CMakeFiles/test.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/test.dir/flags.make
 
-CMakeFiles/test.dir/test.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/test.cpp.o: ../test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test.dir/test.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test.dir/test.cpp.o -c "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/test.cpp"
+CMakeFiles/test.dir/Agent.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/Agent.cpp.o: ../Agent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test.dir/Agent.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test.dir/Agent.cpp.o -c "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp"
 
-CMakeFiles/test.dir/test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/test.cpp" > CMakeFiles/test.dir/test.cpp.i
+CMakeFiles/test.dir/Agent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/Agent.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp" > CMakeFiles/test.dir/Agent.cpp.i
 
-CMakeFiles/test.dir/test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/test.cpp" -o CMakeFiles/test.dir/test.cpp.s
+CMakeFiles/test.dir/Agent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/Agent.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp" -o CMakeFiles/test.dir/Agent.cpp.s
 
 CMakeFiles/test.dir/Board.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/Board.cpp.o: ../Board.cpp
@@ -83,31 +83,31 @@ CMakeFiles/test.dir/Board.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/Board.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Board.cpp" -o CMakeFiles/test.dir/Board.cpp.s
 
-CMakeFiles/test.dir/Agent.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/Agent.cpp.o: ../Agent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/test.dir/Agent.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test.dir/Agent.cpp.o -c "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp"
+CMakeFiles/test.dir/test.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/test.cpp.o: ../test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/test.dir/test.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test.dir/test.cpp.o -c "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/test.cpp"
 
-CMakeFiles/test.dir/Agent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/Agent.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp" > CMakeFiles/test.dir/Agent.cpp.i
+CMakeFiles/test.dir/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/test.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/test.cpp" > CMakeFiles/test.dir/test.cpp.i
 
-CMakeFiles/test.dir/Agent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/Agent.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp" -o CMakeFiles/test.dir/Agent.cpp.s
+CMakeFiles/test.dir/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/test.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/test.cpp" -o CMakeFiles/test.dir/test.cpp.s
 
 # Object files for target test
 test_OBJECTS = \
-"CMakeFiles/test.dir/test.cpp.o" \
+"CMakeFiles/test.dir/Agent.cpp.o" \
 "CMakeFiles/test.dir/Board.cpp.o" \
-"CMakeFiles/test.dir/Agent.cpp.o"
+"CMakeFiles/test.dir/test.cpp.o"
 
 # External object files for target test
 test_EXTERNAL_OBJECTS =
 
-test: CMakeFiles/test.dir/test.cpp.o
-test: CMakeFiles/test.dir/Board.cpp.o
 test: CMakeFiles/test.dir/Agent.cpp.o
+test: CMakeFiles/test.dir/Board.cpp.o
+test: CMakeFiles/test.dir/test.cpp.o
 test: CMakeFiles/test.dir/build.make
 test: CMakeFiles/test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable test"

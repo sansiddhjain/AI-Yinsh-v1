@@ -14,16 +14,16 @@ void Agent::execute_move(string move, int playerID) {
     state.execute_move(move, playerID);
 }
 
-// Copy state to state_tree
-void Agent::copy_board() {
-    // = operator copies maps and copies vectors
-    state_tree.game_board = state.game_board;
-    state_tree.num_rings_on_board = state.num_rings_on_board;
-    state_tree.num_opp_rings_on_board = state.num_opp_rings_on_board;
-    state_tree.rings_vector = state.rings_vector;
-    state_tree.opp_rings_vector = state.opp_rings_vector;
-
-}
+//// Copy state to state_tree
+//void Agent::copy_board() {
+//    // = operator copies maps and copies vectors
+//    state_tree.game_board = state.game_board;
+//    state_tree.num_rings_on_board = state.num_rings_on_board;
+//    state_tree.num_opp_rings_on_board = state.num_opp_rings_on_board;
+//    state_tree.rings_vector = state.rings_vector;
+//    state_tree.opp_rings_vector = state.opp_rings_vector;
+//
+//}
 
 // Simple scoring function based on Slovenian guy recommendation #2
 double Agent::score_function(vector<pair<pair<int, int>, pair<int, int> > > vec) {
@@ -69,20 +69,16 @@ void Agent::recursive_construct_tree(Board board, Node *node, int depth, int max
         vector<pair<pair<int, int>, pair<int, int> > > succ_all;
         if (depth % 2 == 0) //Self player is playing
         {
-//        cerr << "self" << endl;
             node->type = 'M';
             for (int i = 0; i < state.num_rings_on_board; i++) {
                 pair<pair<int,int>,pair<int,int>> temp = make_pair(make_pair(-1,-1), make_pair(-1,0));
                 vector<pair<pair<int, int>, pair<int, int> > > succ_ring = board.successors(board.rings_vector.at(i));
                 succ_all.reserve(succ_all.size() + succ_ring.size());
-//          cerr << "successors of ring # " << i + 1 << " - " << succ_ring.size() << '\n';
-//          cerr << "all successors seen till now - " << succ_all.size() << '\n';
                 succ_all.insert(succ_all.end(), succ_ring.begin(), succ_ring.end());
             }
         }
         else //Opponent is playing
         {
-//            cerr << "opp" << endl;
             node->type = 'm';
             for (int i = 0; i < state.num_opp_rings_on_board; i++) {
                 vector<pair<pair<int, int>, pair<int, int> > > succ_ring = board.successors(board.opp_rings_vector.at(i));
@@ -90,26 +86,17 @@ void Agent::recursive_construct_tree(Board board, Node *node, int depth, int max
                 succ_all.insert(succ_all.end(), succ_ring.begin(), succ_ring.end());
             }
         }
-//    cerr << "Reached here, depth = " << depth << endl;
         node->children = new Node *[succ_all.size()];
-//    std::cerr << "created node->children" << '\n';
         vector<pair<pair<int, int>, pair<int, int> > >::iterator ptr;
-//    std::cerr << "created iterator" << '\n';
         int idx = 0;
-//    std::cerr << "going inside loop for all children" << '\n';
         for (ptr = succ_all.begin(); ptr != succ_all.end(); ptr++) {
             pair<pair<int, int>, pair<int, int> > move = *ptr;
-//      std::cerr << move.first.first << ", " << move.first.second << "; " << move.second.first << ", " << move.second.second << '\n';
-//      std::cerr << "Entered loop" << '\n';
             node->children[idx] = new Node;
             node->children[idx]->move = move;
-//      std::cerr << "assigned child " << idx << "its corresponding move" << '\n';
             Board b(board);
             bool c = b.move_ring(move.first, move.second);
-//      std::cerr << "performed move" << '\n';
             if (c) {
                 recursive_construct_tree(b, node->children[idx], depth + 1, maxDepth);
-//                c = board.move_ring(move.second, move.first);
             }
             idx++;
         }
@@ -158,29 +145,24 @@ string Agent::get_next_move() {
     state_tree = Board(state);
     Node *tree = new Node;
     tree->type = 'M';
-//    cerr << "22@" << endl;
     if (state.num_moves_played < 16) {
-//        cerr << "DEPTH 2" << endl;
         minimax_ab(state_tree, tree, 0, -INFINITY, INFINITY, 2);
 //        recursive_construct_tree(state_tree, tree, 0, 2);
-
     }
     else if (state.num_moves_played < 22) {
-//        cerr << "DEPTH 3" << endl;
         minimax_ab(state_tree, tree, 0, -INFINITY, INFINITY, 3);
 //        recursive_construct_tree(state_tree, tree, 0, 3);
     }
     else {
-//        cerr << "DEPTH 4" << endl;
         minimax_ab(state_tree, tree, 0, -INFINITY, INFINITY, 4);
 //        recursive_construct_tree(state_tree, tree, 0,4);
     }
-//    cerr << "111" <<endl;
-//    int trash = minimax(tree);
+
     pair<pair<int, int>, pair<int, int> > move = tree->children[tree->gotoidx]->move;
     std::cerr << move.first.first << ", " << move.first.second << "; " << move.second.first << ", "
               << move.second.second << '\n';
     bool b = state.move_ring(move.first, move.second);
+
     // convert to string to send to server
     vector<pair<pair<int, int>, pair<int, int> > > five_or_more = state.get_marker_rows(5, state.player_color);
     move.first = state.xy_to_hex(move.first);

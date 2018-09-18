@@ -144,7 +144,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=yinsh_ai
+CMAKE_PROJECT_NAME:STATIC=col671_assgn2
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -212,10 +212,10 @@ ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
 
 //Value Computed by CMake
-yinsh_ai_BINARY_DIR:STATIC=/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug
+col671_assgn2_BINARY_DIR:STATIC=/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug
 
 //Value Computed by CMake
-yinsh_ai_SOURCE_DIR:STATIC=/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2
+col671_assgn2_SOURCE_DIR:STATIC=/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2
 
 
 ########################

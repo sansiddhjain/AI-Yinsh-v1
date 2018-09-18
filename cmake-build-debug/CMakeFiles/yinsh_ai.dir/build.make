@@ -57,18 +57,18 @@ include CMakeFiles/yinsh_ai.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/yinsh_ai.dir/flags.make
 
-CMakeFiles/yinsh_ai.dir/main.cpp.o: CMakeFiles/yinsh_ai.dir/flags.make
-CMakeFiles/yinsh_ai.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/yinsh_ai.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/main.cpp.o -c "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/main.cpp"
+CMakeFiles/yinsh_ai.dir/Agent.cpp.o: CMakeFiles/yinsh_ai.dir/flags.make
+CMakeFiles/yinsh_ai.dir/Agent.cpp.o: ../Agent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/yinsh_ai.dir/Agent.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/Agent.cpp.o -c "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp"
 
-CMakeFiles/yinsh_ai.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yinsh_ai.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/main.cpp" > CMakeFiles/yinsh_ai.dir/main.cpp.i
+CMakeFiles/yinsh_ai.dir/Agent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yinsh_ai.dir/Agent.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp" > CMakeFiles/yinsh_ai.dir/Agent.cpp.i
 
-CMakeFiles/yinsh_ai.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yinsh_ai.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/main.cpp" -o CMakeFiles/yinsh_ai.dir/main.cpp.s
+CMakeFiles/yinsh_ai.dir/Agent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yinsh_ai.dir/Agent.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp" -o CMakeFiles/yinsh_ai.dir/Agent.cpp.s
 
 CMakeFiles/yinsh_ai.dir/Board.cpp.o: CMakeFiles/yinsh_ai.dir/flags.make
 CMakeFiles/yinsh_ai.dir/Board.cpp.o: ../Board.cpp
@@ -83,31 +83,31 @@ CMakeFiles/yinsh_ai.dir/Board.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yinsh_ai.dir/Board.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Board.cpp" -o CMakeFiles/yinsh_ai.dir/Board.cpp.s
 
-CMakeFiles/yinsh_ai.dir/Agent.cpp.o: CMakeFiles/yinsh_ai.dir/flags.make
-CMakeFiles/yinsh_ai.dir/Agent.cpp.o: ../Agent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/yinsh_ai.dir/Agent.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/Agent.cpp.o -c "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp"
+CMakeFiles/yinsh_ai.dir/main.cpp.o: CMakeFiles/yinsh_ai.dir/flags.make
+CMakeFiles/yinsh_ai.dir/main.cpp.o: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/yinsh_ai.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/yinsh_ai.dir/main.cpp.o -c "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/main.cpp"
 
-CMakeFiles/yinsh_ai.dir/Agent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yinsh_ai.dir/Agent.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp" > CMakeFiles/yinsh_ai.dir/Agent.cpp.i
+CMakeFiles/yinsh_ai.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/yinsh_ai.dir/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/main.cpp" > CMakeFiles/yinsh_ai.dir/main.cpp.i
 
-CMakeFiles/yinsh_ai.dir/Agent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yinsh_ai.dir/Agent.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/Agent.cpp" -o CMakeFiles/yinsh_ai.dir/Agent.cpp.s
+CMakeFiles/yinsh_ai.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/yinsh_ai.dir/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/main.cpp" -o CMakeFiles/yinsh_ai.dir/main.cpp.s
 
 # Object files for target yinsh_ai
 yinsh_ai_OBJECTS = \
-"CMakeFiles/yinsh_ai.dir/main.cpp.o" \
+"CMakeFiles/yinsh_ai.dir/Agent.cpp.o" \
 "CMakeFiles/yinsh_ai.dir/Board.cpp.o" \
-"CMakeFiles/yinsh_ai.dir/Agent.cpp.o"
+"CMakeFiles/yinsh_ai.dir/main.cpp.o"
 
 # External object files for target yinsh_ai
 yinsh_ai_EXTERNAL_OBJECTS =
 
-yinsh_ai: CMakeFiles/yinsh_ai.dir/main.cpp.o
-yinsh_ai: CMakeFiles/yinsh_ai.dir/Board.cpp.o
 yinsh_ai: CMakeFiles/yinsh_ai.dir/Agent.cpp.o
+yinsh_ai: CMakeFiles/yinsh_ai.dir/Board.cpp.o
+yinsh_ai: CMakeFiles/yinsh_ai.dir/main.cpp.o
 yinsh_ai: CMakeFiles/yinsh_ai.dir/build.make
 yinsh_ai: CMakeFiles/yinsh_ai.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable yinsh_ai"

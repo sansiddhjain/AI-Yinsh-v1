@@ -1,12 +1,4 @@
-./cmake-build-debug/*
-./cmake-build-debug/
-./build/*
-./build
-./server.log
-./test
-./writeup.txt
-./a.out
-./2015CS10234_2014ME20762.zip
-./.idea/*
-./.idea
-
+.idea/*
+cmake-build-debug/*
+CMakeLists.txt
+code

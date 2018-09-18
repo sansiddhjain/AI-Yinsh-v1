@@ -337,7 +337,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!base.at(initial_pos.second + i).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first, initial_pos.second + i)));
-            break;
+//            break;
         }
         i++;
     }
@@ -349,7 +349,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!base.at(initial_pos.second - i).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first, initial_pos.second - i)));
-            break;
+//            break;
         }
         i++;
     }
@@ -365,7 +365,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!game_board.at(initial_pos.first + i).at(initial_pos.second).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first + i, initial_pos.second)));
-            break;
+//            break;
         }
         i++;
     }
@@ -379,7 +379,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!game_board.at(initial_pos.first - i).at(initial_pos.second).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first - i, initial_pos.second)));
-            break;
+//            break;
         }
         i++;
     }
@@ -395,7 +395,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!game_board.at(initial_pos.first + i).at(initial_pos.second + i).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first + i, initial_pos.second + i)));
-            break;
+//            break;
         }
         i++;
     }
@@ -409,11 +409,10 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!game_board.at(initial_pos.first - i).at(initial_pos.second - i).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first - i, initial_pos.second - i)));
-            break;
+//            break;
         }
         i++;
     }
-
     return successors;
 }
 
@@ -545,7 +544,6 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::get_marker_rows(int length
                 x++;
         }
     }
-
     return result;
 }
 

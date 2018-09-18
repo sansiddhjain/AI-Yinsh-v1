@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/yinsh_ai.dir/main.cpp.o"
-  "CMakeFiles/yinsh_ai.dir/Board.cpp.o"
   "CMakeFiles/yinsh_ai.dir/Agent.cpp.o"
+  "CMakeFiles/yinsh_ai.dir/Board.cpp.o"
+  "CMakeFiles/yinsh_ai.dir/main.cpp.o"
   "yinsh_ai.pdb"
   "yinsh_ai"
 )

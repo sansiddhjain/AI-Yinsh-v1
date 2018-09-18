@@ -1,1 +1,1 @@
-/usr/bin/c++  -g -gdwarf-3   CMakeFiles/yinsh_ai.dir/main.cpp.o CMakeFiles/yinsh_ai.dir/Board.cpp.o CMakeFiles/yinsh_ai.dir/Agent.cpp.o  -o yinsh_ai 
+/usr/bin/c++  -g   CMakeFiles/yinsh_ai.dir/Agent.cpp.o CMakeFiles/yinsh_ai.dir/Board.cpp.o CMakeFiles/yinsh_ai.dir/main.cpp.o  -o yinsh_ai 
