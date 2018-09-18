@@ -84,7 +84,7 @@ Board::Board(int n, int m, int k, int l, char player_col, char other_col) : n(n)
 }
 
 // place piece at given position
-bool Board::place_piece(char type, char color, pair<int, int> position) {
+void Board::place_piece(char type, char color, pair<int, int> position) {
     game_board.at(position.first).at(position.second).piece = new Piece(type, color, position.first, position.second);
     if (type == 'r') {
         if (color == player_color) {
@@ -102,11 +102,10 @@ bool Board::place_piece(char type, char color, pair<int, int> position) {
         else
             num_opp_markers++;
     }
-    return true;
 }
 
 // remove piece from position
-bool Board::remove_piece(pair<int, int> position) {
+void Board::remove_piece(pair<int, int> position) {
     if (game_board.at(position.first).at(position.second).piece->type == 'r') {
         if (game_board.at(position.first).at(position.second).piece->color == player_color) {
             for (int i = 0; i < num_rings_on_board; i++) {
@@ -138,11 +137,10 @@ bool Board::remove_piece(pair<int, int> position) {
     }
     delete game_board.at(position.first).at(position.second).piece;
     game_board.at(position.first).at(position.second).piece = nullptr;
-    return true;
 }
 
 // move ring from old to new position
-bool Board::move_ring(pair<int, int> p1, pair<int, int> p2) {
+void Board::move_ring(pair<int, int> p1, pair<int, int> p2) {
     // make changes in rings_vector
     if (game_board.at(p1.first).at(p1.second).piece->color == player_color)
         replace(rings_vector.begin(), rings_vector.end(), p1, p2);
@@ -169,7 +167,6 @@ bool Board::move_ring(pair<int, int> p1, pair<int, int> p2) {
                 game_board.at(p1.first).at(i).piece->flip_color();
             }
         }
-        return true;
     }
     else if (p1.second == p2.second) {
         for (int i = min(p1.first, p2.first) + 1; i < max(p1.first, p2.first); i++) {
@@ -179,7 +176,6 @@ bool Board::move_ring(pair<int, int> p1, pair<int, int> p2) {
                 game_board.at(i).at(p1.second).piece->flip_color();
             }
         }
-        return true;
     }
     else if (p1.first - p1.second == p2.first - p2.second) {
         // line x-y = k
@@ -191,26 +187,22 @@ bool Board::move_ring(pair<int, int> p1, pair<int, int> p2) {
                 game_board.at(i + k).at(i).piece->flip_color();
             }
         }
-        return true;
     }
-    return false;
 }
 
 // delete row of markers (5 starting from start on line from start - p1 to end - p2)
-bool Board::delete_row(pair<int, int> p1, pair<int, int> p2) {
+void Board::delete_row(pair<int, int> p1, pair<int, int> p2) {
     if (p1.first == p2.first) {
         for (int i = min(p1.second, p2.second); i < min(p1.second, p2.second) + 5; i++) {
             if (game_board.at(p1.first).at(i).is_marker())
                 remove_piece(make_pair(p1.first, i));
         }
-        return true;
     }
     else if (p1.second == p2.second) {
         for (int i = min(p1.first, p2.first); i < min(p1.first, p2.first) + 5; i++) {
             if (game_board.at(i).at(p1.second).is_marker())
                 remove_piece(make_pair(i, p1.second));
         }
-        return true;
     }
     else if (p1.first - p1.second == p2.first - p2.second) {
         // line x-y = k
@@ -219,7 +211,6 @@ bool Board::delete_row(pair<int, int> p1, pair<int, int> p2) {
             if (game_board.at(i + k).at(i).is_marker())
                 remove_piece(make_pair(i + k, i));
         }
-        return true;
     }
 }
 
