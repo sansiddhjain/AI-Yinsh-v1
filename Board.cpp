@@ -350,9 +350,8 @@ double Board::calculate_score() {
     return score;
 }
 
-
-
 // Returns the successors for a particular initial position, along with score
+// considers all possible valid yinsh successors
 vector< pair<double, pair<pair<int, int>, pair<int, int> > > > Board::successors_score1(pair<int, int> initial_pos) {
     vector< pair< double, pair<pair<int, int>, pair<int, int> > > > successors;
     //todo: clean code
@@ -483,7 +482,7 @@ vector< pair<double, pair<pair<int, int>, pair<int, int> > > > Board::successors
     return successors;
 }
 
-
+// considers next whitespace, first whitespace next to contiguous markers
 vector< pair<double, pair<pair<int, int>, pair<int, int> > > > Board::successors_score(pair<int, int> initial_pos) {
     vector< pair< double, pair<pair<int, int>, pair<int, int> > > > successors;
     //todo: clean code
@@ -664,13 +663,11 @@ vector< pair<double, pair<pair<int, int>, pair<int, int> > > > Board::successors
         }
         i++;
     }
-
     return successors;
 }
 
 
-
-// Returns the successors for a particular initial position
+// Returns the successors for a particular initial position - DEPRECATED
 vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> initial_pos) {
     vector<pair<pair<int, int>, pair<int, int> > > successors;
     //todo: clean code
@@ -780,7 +777,6 @@ void Board::execute_move(string move, int playerID) {
         pair<int, int> pos_hex = make_pair(stoi(splitString.at(1)),
                                            stoi(splitString.at(2))); //position in hex coordinates
         pair<int, int> pos_xy = hex_to_xy(pos_hex);
-//        std::cerr << pos_xy.first << ", " << pos_xy.second << '\n';
         place_piece('r', playerID == 1 ? player_color : other_color, pos_xy);
     }
     else if (splitString.size() == 6) { // Move a ring
