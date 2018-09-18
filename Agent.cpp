@@ -134,10 +134,9 @@ string Agent::initial_move() {
     }
 }
 
-
 string Agent::get_next_move() {
     // IMPORTANT - Also executes next move
-    if ((state.num_rings_on_board < state.return_m()) & (state.num_markers == 0)) {
+    if (state.num_moves_played < 10) {
         // Perform placement of ring
         state.num_moves_played++;
         return initial_move();
@@ -178,7 +177,7 @@ string Agent::get_next_move() {
         return output;
     }
     else {
-        // todo: determine strategy to remove markers if multiple are formed
+        // todo: handle cases of multiple rows being formed
         pair<pair<int, int>, pair<int, int> > tuple = five_or_more.at(0);
         pair<int, int> start = tuple.first;
         pair<int, int> end = tuple.second;
@@ -318,8 +317,6 @@ double Agent::minimax_ab(Board board, Node *node, int depth, double alpha, doubl
                 if(v_prime > v){
                     v = v_prime;
                     node->gotoidx = i;
-//                    node->children[i]->score = v_prime;
-//                    node->gotoidx = i;
                 }
                 alpha = max(alpha, v);
                 if (alpha >= beta)
@@ -338,7 +335,6 @@ double Agent::minimax_ab(Board board, Node *node, int depth, double alpha, doubl
                 double v_prime = minimax_ab(temp_board, node->children[i], depth + 1, alpha, v, maxDepth);
                 if(v_prime < v) {
                     v = v_prime;
-//                    node->children[i]->score = v_prime;
                     node->gotoidx = i;
                 }
                 beta = min(beta, v);
@@ -349,49 +345,6 @@ double Agent::minimax_ab(Board board, Node *node, int depth, double alpha, doubl
         }
     }
 }
-
-/*
- * function alphabeta(node, α, β, maximizingPlayer)
-        if node is a terminal node
-            return { value: value of node, node : node}
-        if maximizingPlayer
-            v = -∞
-            bestNode = None
-            for each child of node
-                localMax = alphabeta(child, α, β, FALSE)
-                if localMax.value > v
-                    v = localMax.value
-                    bestNode = localMax.node
-
-                α = max(α, v)
-                if β ≤ α
-                    break
-            return {value : v, node: bestNode}
- */
-
-
-
-/*
- * fun minimax(n: node, d: int, min: int, max: int): int =
-   if leaf(n) or depth=0 return evaluate(n)
-   if n is a max node
-      v := min
-      for each child of n
-         v' := minimax (child,d-1,v,max)
-         if v' > v, v:= v'
-         if v > max return max
-      return v
-   if n is a min node
-      v := max
-      for each child of n
-         v' := minimax (child,d-1,min,v)
-         if v' < v, v:= v'
-         if v < min return min
-      return v
- */
-
-
-
 
 bool Agent::check_won() {
     return state.num_rings_on_board == (state.return_m() - state.return_l());

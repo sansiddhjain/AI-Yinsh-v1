@@ -11,39 +11,20 @@ using namespace std;
 #include <vector>
 #include <map>
 
-//class Ring {
-//private:
-//    char color;
-//    pair<int,int> position;
-//
-//public:
-//    Ring() : color('o') {};
-//    Ring(char col, pair<int,int>& pos) : color(col){};
-//};
-//
-//class Marker{
-//private:
-//    char color;
-//    pair<int,int> position;
-//
-//public:
-//    Marker() : color('o'), position(0,0) {};
-//    Marker(char col, pair<int,int>& pos) : color(col), position(pos) {};
-//};
-
 class Piece{
 private:
 public:
     char color; // 'o' - orange, 'b' - blue
-    //pair<int,int> position;
     char type; // 'r' - ring, 'm' - marker
     int xcord;
     int ycord;
 
-//    Piece() : type('r'), color('o') {}
     Piece(char t, char c, int xcord, int ycord) : type(t), color(c), xcord(xcord), ycord(ycord) {}
-    Piece(const Piece& p) : color(p.color), type(p.type), xcord(p.xcord), ycord(p.ycord) {}
     void flip_color() { color = color == 'o' ? 'b' : 'o';}
+
+//    Piece(const Piece& p) : color(p.color), type(p.type), xcord(p.xcord), ycord(p.ycord) {}
+//    ~Piece() = default;
+//    Piece& operator=(const Piece& p) {if(this != &p) {color = p.color; type = p.type; xcord = p.xcord; ycord = p.ycord;} return *this;}
 };
 
 class Point{
@@ -52,11 +33,15 @@ public:
     int ycord;
     int xcord;
     Piece *piece; // pointer to ring or marker, null if nothing present
+
     Point(int xcord, int ycord) : xcord(xcord), ycord(ycord), piece(nullptr) {};
     bool is_piece() { return piece != nullptr;}
     bool is_ring() {return  piece != nullptr && piece->type == 'r';}
     bool is_marker() {return piece != nullptr && piece->type == 'm';}
+
     Point(const Point &p);
+    ~Point() {delete piece;}
+    Point& operator=(const Point& p);
 };
 
 class Board{

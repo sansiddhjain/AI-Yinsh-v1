@@ -23,9 +23,16 @@ Point::Point(const Point &p): xcord(p.xcord), ycord(p.ycord) {
         piece = nullptr;
 }
 
-//Point& Point::operator=(const Point& p){
-//
-//}
+Point& Point::operator=(const Point& p){
+    if (this != &p) // protect against invalid self-assignment
+    {
+        xcord = p.xcord;
+        ycord = p.ycord;
+        piece = new Piece(*p.piece);
+    }
+    // by convention, always return *this
+    return *this;
+}
 
 bool Board::is_position_valid(pair<int, int> position) {
     return abs(position.first) <= n && abs(position.second) <= n;
@@ -179,8 +186,11 @@ bool Board::move_ring(pair<int, int> p1, pair<int, int> p2) {
     }
     else if (p1.second == p2.second) {
         for (int i = min(p1.first, p2.first) + 1; i < max(p1.first, p2.first); i++) {
-            if (game_board.at(i).at(p1.second).is_marker())
+            if (game_board.at(i).at(p1.second).is_marker()) {
+                num_markers += game_board.at(i).at(p1.second).piece->color == player_color ? 1 : -1;
+                num_opp_markers += game_board.at(i).at(p1.second).piece->color == player_color ? -1 : 1;
                 game_board.at(i).at(p1.second).piece->flip_color();
+            }
         }
         return true;
     }
@@ -188,8 +198,11 @@ bool Board::move_ring(pair<int, int> p1, pair<int, int> p2) {
         // line x-y = k
         int k = p1.first - p1.second;
         for (int i = min(p1.second, p2.second) + 1; i < max(p1.second, p2.second); i++) {
-            if (game_board.at(i + k).at(i).is_marker())
+            if (game_board.at(i + k).at(i).is_marker()) {
+                num_markers += game_board.at(i+k).at(i).piece->color == player_color ? 1 : -1;
+                num_opp_markers += game_board.at(i+k).at(i).piece->color == player_color ? -1 : 1;
                 game_board.at(i + k).at(i).piece->flip_color();
+            }
         }
         return true;
     }
@@ -337,7 +350,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!base.at(initial_pos.second + i).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first, initial_pos.second + i)));
-//            break;
+            break;
         }
         i++;
     }
@@ -349,7 +362,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!base.at(initial_pos.second - i).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first, initial_pos.second - i)));
-//            break;
+            break;
         }
         i++;
     }
@@ -365,7 +378,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!game_board.at(initial_pos.first + i).at(initial_pos.second).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first + i, initial_pos.second)));
-//            break;
+            break;
         }
         i++;
     }
@@ -379,7 +392,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!game_board.at(initial_pos.first - i).at(initial_pos.second).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first - i, initial_pos.second)));
-//            break;
+            break;
         }
         i++;
     }
@@ -395,7 +408,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!game_board.at(initial_pos.first + i).at(initial_pos.second + i).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first + i, initial_pos.second + i)));
-//            break;
+            break;
         }
         i++;
     }
@@ -409,7 +422,7 @@ vector<pair<pair<int, int>, pair<int, int> > > Board::successors(pair<int, int> 
             break;
         if (!game_board.at(initial_pos.first - i).at(initial_pos.second - i).is_piece()) {
             successors.emplace_back(make_pair(initial_pos, make_pair(initial_pos.first - i, initial_pos.second - i)));
-//            break;
+            break;
         }
         i++;
     }
