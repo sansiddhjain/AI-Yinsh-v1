@@ -311,7 +311,7 @@ double Agent::minimax_ab(Board board, Node *node, int depth, double alpha, doubl
             for (int i = 0; i < succ_all.size(); i++) {
                 node->children[i] = new Node;
                 node->children[i]->move = succ_all[i];
-                node->children[i]->type == 'm';
+                node->children[i]->type = 'm';
                 Board temp_board(board);
                 temp_board.move_ring(succ_all[i].first, succ_all[i].second);
                 double v_prime = minimax_ab(temp_board, node->children[i], depth + 1, v, beta, maxDepth);

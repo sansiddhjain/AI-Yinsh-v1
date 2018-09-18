@@ -8,6 +8,7 @@
 
 #include "Board.h"
 #include <sstream>
+#include <cmath>
 #include <vector>
 #include <iostream>
 #include <algorithm>
