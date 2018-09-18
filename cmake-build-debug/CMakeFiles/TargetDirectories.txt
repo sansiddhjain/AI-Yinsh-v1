@@ -1,4 +1,0 @@
-/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles/edit_cache.dir
-/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles/test.dir
-/media/karthik/Windows8_OS/2018-19 First Sem/AI/Assignments/Assignment2/col671-assgn2/cmake-build-debug/CMakeFiles/yinsh_ai.dir
