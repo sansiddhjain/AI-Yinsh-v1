@@ -80,12 +80,13 @@ public:
     bool delete_row(pair<int,int> p1, pair<int,int> p2);
     double score_function(vector<pair<pair<int, int>, pair<int, int> > > vec);
     double calculate_score();
-    multimap< double, pair<pair<int, int>, pair<int, int> > > successors_score(pair<int,int> initial_pos);
+    vector< pair < double, pair<pair<int, int>, pair<int, int> > > > successors_score(pair<int,int> initial_pos);
     vector< pair< pair<int,int>, pair<int,int> > > successors(pair<int,int> initial_pos);
     pair<int,int> xy_to_hex(pair<int,int> point);
     pair<int,int> hex_to_xy(pair<int,int> hex_point);
     void execute_move(string move, int playerID);
     vector< pair< pair<int,int>, pair<int,int> > > get_marker_rows(int length, char color); //returns rows of length >= given
+    vector< pair<double, pair<pair<int, int>, pair<int, int> > > > successors_score1(pair<int, int> initial_pos);
 };
 
 
