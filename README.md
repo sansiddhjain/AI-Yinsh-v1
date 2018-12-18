@@ -1,7 +1,8 @@
 # AI-Yinsh-v1
-Code for playing the two-player abstract strategy board game Yinsh. This is the first of a two-part assignment to make bots that play Yinsh. This particular bot is based on minimax plus some tuned heuristics.
 
-The interface for playing the game can be found here, and a tutorial on the game, here.
+Code for playing the two-player abstract strategy board game Yinsh. This is the first of a two-part assignment to make bots that play Yinsh. This particular bot is based on minimax plus some tuned heuristics. 
+
+The interface for playing the game can be found [here](https://github.com/NikhilGupta1997/Yinsh-AI), and a tutorial on the game, [here](https://www.youtube.com/watch?v=Ho8OxwpMbc8).
 
 ## Rules
 The rules of the game can be found [here](http://www.gipf.com/yinsh/rules/rules.html)
